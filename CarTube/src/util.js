@@ -32,7 +32,7 @@ export function sessionFailed(){
     const expDate = new Date(sessionStorage.getItem('fb-token-exp'))
     if (new Date() > expDate){
         document.querySelector('#profile').style.display = 'none'
-        document.querySelector('#guest').style.display = 'block'
+        document.querySelector('#guest').style.display = 'flex'
         clearUserData()
         notifyLoading('Session failed.Login again!')
         page.redirect('/')
@@ -56,7 +56,6 @@ export function objectProfileToArray(data){
         return Object.entries(data).map(([k,v]) => Object.assign({_id: k},v))
             .filter(r => r._ownerId === getUserId())
     }
-
 }
 export function objectSearchToArray(data){
     if (data === null){
@@ -64,7 +63,6 @@ export function objectSearchToArray(data){
     }else{
         return Object.entries(data).map(([k,v]) => Object.assign({_id: k},v))
     }
-
 }
 export function objectCountToArray(data){
     if (data === null){
@@ -72,7 +70,6 @@ export function objectCountToArray(data){
     }else{
         return Object.keys(data)
     }
-
 }
 
 

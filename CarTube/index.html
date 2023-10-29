@@ -7,61 +7,77 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Car Tube</title>
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <header class="header">
+        <div class="col-12">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Home</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/all-listings">All Listings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/search">By Year</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto " id="profile">
+                            <li class="nav-item">
+                                <a class="nav-link" id="user-greeting">Welcome username</a>
+                            </li>
 
-    <div id="container">
-        <!--Notification-->
-        <section id="notifications">
-            <div id="errorBox" class="notification">
-                <span>MESSAGE</span>
-            </div>
-            <div id="loadingBox" class="notification">
-                <span>MESSAGE</span>
-            </div>
-            <div id="infoBox" class="notification">
-                <span>MESSAGE</span>
-            </div>
-        </section>
-         <!--Navigation-->
-        <header>
-            <nav>
-                <a class="active" href="/">Home</a>
-                <a href="/all-listings">All Listings</a>
-                <a href="/search">By Year</a>
-                <!-- Guest users -->
-                <div id="guest">
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
-                </div>
-                <!-- Logged users -->
-                <div id="profile">
-                    <a id="user-greeting">Welcome username</a>
-                    <a href="/profile">My Listings</a>
-                    <a href="/create">Create Listing</a>
-                    <a id="logoutBtn" href="javascript:void(0)">Logout</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/profile">My Listings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/create">Create Listing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="logoutBtn" href="javascript:void(0)">Logout</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto" id="guest">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Register</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
-        </header>
-        <main id="site-content">
+        </div>
+    </header>
 
+    <!--Notification-->
+    <section id="notifications">
+        <div id="errorBox" class="notification">
+            <span>MESSAGE</span>
+        </div>
+        <div id="loadingBox" class="notification">
+            <span>MESSAGE</span>
+        </div>
+        <div id="infoBox" class="notification">
+            <span>MESSAGE</span>
+        </div>
+    </section>
+
+    <main id="site-content">
+        <section class="container">
             <!-- Main Content -->
+        </section>
+    </main>
 
-        </main>
-
-
-        <footer>
-            <p>&copy; All rights reserved</p>
-        </footer>
-    </div>
+    <footer>
+        <p>&copy; All rights reserved</p>
+    </footer>
 
 </body>
 

@@ -1,33 +1,38 @@
 import {html} from '../../node_modules/lit-html/lit-html.js'
 import {addLike, deleteById, getById} from "../api.js";
 import {getUserData, getUserId,sessionFailed} from "../util.js";
-
 const detailsTemplate = (car,isOwner,onDelete,likes,userLike,isUser,onLike) => html`
     <!-- Listing Details Page -->
-    <section id="listing-details">
+    <div class="row">
         <h1>Details</h1>
-        <div class="details-info">
-            <img src=${car.imageUrl}>
-            <hr>
-            <ul class="listing-props">
-                <li><span>Brand:</span>${car.brand}</li>
-                <li><span>Model:</span>${car.model}</li>
-                <li><span>Year:</span>${car.year}</li>
-                <li><span>Price:</span>${car.price}</li>
-            </ul>
-
-            <p class="description-para">${car.description}</p>
-            <div class="d-flex justify-content-center mb-5">
-                ${isOwner ? html`
-                    <a href="/edit/${car._id}" class="button-list">Edit</a>
-                    <a @click="${onDelete}" href="javascript:void(0)" class="button-list">Delete</a>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <div class="card h-100">
+                    <img src=${car.imageUrl} class="card-img-top" alt="car-image">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-start flex-column align-items-start">
+                            <h3 class="card-text">Brand: ${car.brand}</h3>
+                            <h3 class="card-text">Model: ${car.model}</h3>
+                            <h3 class="card-text">Year: ${car.year}</h3>
+                            <h3 class="card-text">Price $: ${car.price}</h3>
+                        </div>
+                        <p class="card-text text-start">${car.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="justify-content-center mb-5">
+                            ${isOwner ? html`
+                    <a href="/edit/${car._id}" class="btn btn-primary">Edit</a>
+                    <a @click="${onDelete}" href="javascript:void(0)" class="btn btn-danger">Delete</a>
                 ` : ''}
-                <span class="button-likes">Liked ${likes}</span>
-                ${isUser && !isOwner && !userLike ? html`<a @click=${onLike} href="javascript:void(0)"
-                                                            class="button-like">Like</a>` : ''}
+                            <span class="btn btn-success">Liked ${likes}</span>
+                            ${isUser && !isOwner && !userLike ? html`<a @click=${onLike} href="javascript:void(0)"
+                                                            class="btn btn-success">Like</a>` : ''}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 `
 export function detailsPage(ctx){
     const carId = ctx.params.id
@@ -43,10 +48,8 @@ export function detailsPage(ctx){
             userLike = !!car.likesArray.includes(getUserData().email)
             email = getUserData().email
         }
-
         ctx.render(detailsTemplate(car,isOwner,onDelete,likes,userLike,isUser,onLike))
         function onDelete(){
-
             const confirmed = confirm('Are you sure')
             if (confirmed){
                 sessionFailed()
@@ -55,7 +58,6 @@ export function detailsPage(ctx){
                 })
             }
         }
-
         function onLike(){
             arr.push(email)
             newArr = arr.slice()

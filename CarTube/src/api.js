@@ -4,13 +4,12 @@ import {
     objectToArray,
     setUserData,
     clearUserData,
-    objectProfileToArray,
     objectSearchToArray,
     setExpireDate
 } from "./util.js";
+
 import page from '../node_modules/page/page.mjs'
 import {notifyError} from "./views/notification.js";
-
 
 const apikey = 'AIzaSyDh1waIL7GhJQqjOpenoE-rVLWfQFDdoAU';
 
@@ -26,18 +25,16 @@ const endpoints = {
 function host(url,page ) {
     let result = databaseUrl + url + '.json';
     const auth = getUserData();
-
     if (auth !== null) {
-        result += `?auth=${auth.idToken}&orderBy="$key"&startAt="${page}"&limitToFirst=${3}&print=pretty`;
+        result += `?auth=${auth.idToken}&orderBy="$key"&startAt="${page}"&limitToFirst=4&print=pretty`;
     }else{
-        result += `?orderBy="$key"&startAt="${page}"&limitToFirst=3&print=pretty`
+        result += `?orderBy="$key"&startAt="${page}"&limitToFirst=4&print=pretty`
     }
     return result;
 }
 function hostEditDetails(url) {
     let result = databaseUrl + url + '.json';
     const auth = getUserData();
-
     if (auth !== null) {
         result += `?auth=${auth.idToken}`;
     }
@@ -46,7 +43,6 @@ function hostEditDetails(url) {
 function hostSearch(url,search) {
     let result = databaseUrl + url + '.json';
     const auth = getUserData();
-
     if (auth !== null) {
         result += `?auth=${auth.idToken}`;
     }
@@ -74,7 +70,6 @@ function hostProfilePagination(url,page='') {
 function countObject(url){
     let result = databaseUrl + url + '.json';
     const auth = getUserData();
-
     if (auth !== null) {
         result += `?auth=${auth.idToken}&orderBy="$key"`;
     }else{
@@ -82,12 +77,10 @@ function countObject(url){
     }
     return result;
 }
-
 function request(url, method, body) {
     let options = {
         method,
     };
-
     if (body) {
         Object.assign(options, {
             headers: {
@@ -96,7 +89,6 @@ function request(url, method, body) {
             body: JSON.stringify(body)
         });
     }
-
     return fetch(url, options)
         .then(response => {
             if (!response.ok) {
@@ -112,35 +104,30 @@ function request(url, method, body) {
             return data;
         });
 }
-
 function get(url) {
     return request(url, 'GET');
 }
-
 function post(url, body) {
     return request(url, 'POST', body);
 }
-
 function del(url) {
     return request(url, 'DELETE');
 }
-
 function patch(url, body) {
     return request(url, 'PATCH', body);
 }
-
 export function login(email, password) {
     return post(endpoints.LOGIN + apikey, {
         email,
         password,
         returnSecureToken: true
     })
-        .then(response => {
-            setUserData(response);
-            const expDate = new Date(new Date().getTime() + Number(response.expiresIn) * 1000)
-            setExpireDate(expDate)
-            return response;
-        });
+    .then(response => {
+        setUserData(response);
+        const expDate = new Date(new Date().getTime() + Number(response.expiresIn) * 1000)
+        setExpireDate(expDate)
+        return response;
+    });
 }
 
 export function register(email, password) {
@@ -149,10 +136,10 @@ export function register(email, password) {
         password,
         returnSecureToken: true
     })
-        .then(response => {
-            setUserData(response);
-            return response;
-        });
+    .then(response => {
+        setUserData(response);
+        return response;
+    });
 }
 export function logout(){
     clearUserData()
@@ -164,7 +151,6 @@ export function getAll(page) {
             return objectToArray(records);
         });
 }
-
 export function getById(id) {
     return get(hostEditDetails(endpoints.CARS_BY_ID + id))
         .then(record => {
@@ -205,7 +191,6 @@ export function addLike(id, car) {
 export function deleteById(id) {
     return del(hostEditDetails(endpoints.CARS_BY_ID + id));
 }
-
 export function search(year) {
     return get(hostSearch(endpoints.CARS,year))
         .then(records => {

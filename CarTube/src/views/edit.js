@@ -5,46 +5,48 @@ import {sessionFailed} from "../util.js";
 
 const editTemplate = (car,onSubmit) => html`
     <!-- Edit Listing Page -->
-    <section id="edit-listing">
-        <div class="container">
+    <div class="row">
+        <form @submit=${onSubmit}>
+            <h1>Edit Car Listing</h1>
+            <p>Please fill in this form to create an listing.</p>
+            <hr>
 
-            <form @submit=${onSubmit} id="edit-form">
-                <h1>Edit Car Listing</h1>
-                <p>Please fill in this form to edit an listing.</p>
-                <hr>
+            <div class="col-md-6 mb-3">
+                <label for="brand" class="form-label">Car Brand</label>
+                <input type="text" class="form-control form-control-lg" id="brand" name="brand" placeholder="Enter Car Brand" .value=${car.brand}>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="model" class="form-label">Car Model</label>
+                <input type="text" class="form-control form-control-lg" id="model" name="model" placeholder="Enter Car Model" .value=${car.model}>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="description" class="form-label">Car Description</label>
+                <input type="text" class="form-control form-control-lg" id="description" name="description" placeholder="Enter Car Description" .value=${car.description}>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="year" class="form-label">Car Year</label>
+                <input type="text" class="form-control form-control-lg" id="year" name="year" placeholder="Enter Car Year" .value=${car.year}>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="imageUrl" class="form-label">Car ImageUrl</label>
+                <input type="text" class="form-control form-control-lg" id="imageUrl" name="imageUrl" placeholder="Enter Car ImageUrl" .value=${car.imageUrl}>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="price" class="form-label">Car Price</label>
+                <input type="text" class="form-control form-control-lg" id="price" name="price" placeholder="Enter Car Price" .value=${car.price}>
+            </div>
 
-                <p>Car Brand</p>
-                <input type="text" placeholder="Enter Car Brand" name="brand" .value=${car.brand}>
-
-                <p>Car Model</p>
-                <input type="text" placeholder="Enter Car Model" name="model" .value=${car.model}>
-
-                <p>Description</p>
-                <input type="text" placeholder="Enter Description" name="description" .value=${car.description}>
-
-                <p>Car Year</p>
-                <input type="text" placeholder="Enter Car Year" name="year" .value=${car.year}>
-
-                <p>Car Image</p>
-                <input type="text" placeholder="Enter Car Image" name="imageUrl" .value=${car.imageUrl}>
-
-                <p>Car Price</p>
-                <input type="text" placeholder="Enter Car Price" name="price" .value=${car.price}>
-
-                <hr>
-                <input type="submit" class="registerbtn" value="Edit Listing">
-            </form>
-        </div>
-    </section>
+            <hr>
+            <input type="submit" class="btn btn-success" value="Edit Listing">
+        </form>
+    </div>
 `
-
 export function editPage(ctx){
 
     const carId = ctx.params.id
     getById(carId).then((car) => {
         sessionFailed()
         ctx.render(editTemplate(car,onSubmit))
-
         function onSubmit(event){
             event.preventDefault()
             const formData = new FormData(event.target)
@@ -76,7 +78,6 @@ export function editPage(ctx){
             }catch (error) {
                 notifyInfo(error.message)
             }
-
         }
     })
 }
