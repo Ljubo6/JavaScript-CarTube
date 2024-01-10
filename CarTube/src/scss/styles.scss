@@ -1,0 +1,202 @@
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
+
+
+//BODY,HTML,MAIN
+*{
+  box-sizing: border-box;
+}
+body,html{
+  margin: 0;
+  padding: 0;
+}
+h1{
+  font-size: 60px;
+}
+main {
+  min-height: 100vh;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.mb-3 input{
+  background-color: #e1dbdb;
+}
+.hero {
+  margin: 0 auto;
+  max-width: 300px;
+}
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.row{
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+//BODY,HTML,MAIN
+
+
+//HEADER
+.header{
+  width: 100%;
+}
+nav{
+  font-size: 18px;
+  background-color: #333333;
+  text-align: center;
+}
+.navbar-nav li.nav-item a.nav-link{
+  color: white;
+}
+.navbar-nav li.nav-item:hover {
+  background-color: white;
+}
+
+.navbar-nav li.nav-item:hover a.nav-link {
+  color: black;
+}
+.navbar-brand{
+  background-color: darkgreen;
+  margin: 0;
+  padding: 8px;
+}
+.navbar-nav li.nav-item.active {
+  background-color: lightgray;
+}
+.navbar-nav li.nav-item.active a.nav-link {
+  color: black;
+}
+//HEADER
+
+
+
+//FOOTER
+footer {
+  width: 100%;
+  font-size: 18px;
+  background-color: #333333;
+  color: white;
+  text-align: center;
+  padding: 16px;
+}
+//FOOTER
+
+
+//NOTIFICATIONS
+#notifications {
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  margin: 1em;
+}
+
+.notification {
+  font-size: 1.5em;
+  color: #ffffff;
+  display: none;
+  text-align: right;
+}
+
+.notification>span {
+  display: inline-block;
+  padding:  0.5em 2em 0.5em 2em;
+  border-radius: 10px;
+}
+
+#loadingBox>span {
+  background: #7CB3E9;
+}
+#infoBox>span {
+  background: #393;
+}
+#errorBox>span {
+  background: #F50;
+}
+//NOTIFICATIONS
+
+input[type=file]{
+  display: none;
+}
+.preview{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+}
+.preview-image{
+  position: relative;
+  margin-bottom: .5rem;
+  margin-right: .5rem;
+  overflow: hidden;
+}
+.preview-image.removing{
+  transform: scale(0);
+  transition: transform .3s;
+}
+.preview-image:hover .preview-remove{
+  opacity: 1;
+}
+.preview-image:hover .preview-info{
+  opacity: 1;
+  bottom: 0;
+}
+.preview-image img{
+  width: 180px;
+  height: auto;
+}
+
+.preview-remove{
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: bold;
+  background: rgba(213, 113, 113, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity .22s;
+}
+.preview-info{
+  position: absolute;
+  right: 0;
+  bottom: -30px;
+  left: 0;
+  height: 25px;
+  font-size: .8rem;
+  background: rgba(108, 104, 104, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  transition: bottom .22s;
+}
+.preview-info-progress{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: #42b983;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width .22s;
+  width: 30%;
+}
+
+
